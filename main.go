@@ -5,16 +5,17 @@ import (
 	"net/http"
 )
 
-type server struct{}
+type server struct {
+}
 
-func (s *server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"message": "hello world"}`))
+func (s *server) ServeHTTP(responseWriter http.ResponseWriter, request *http.Request) {
+	responseWriter.Header().Set("Content-Type", "application/json")
+	responseWriter.WriteHeader(http.StatusOK)
+	responseWriter.Write([]byte(`{"message": "hello world"}`))
 }
 
 func main() {
-	s := &server{}
-	http.Handle("/", s)
+	server := &server{}
+	http.Handle("/", server)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
