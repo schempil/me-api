@@ -1,7 +1,1 @@
-<h1 align="center">Hi 👋, I'm Philipp Schemel</h1>
-<h3 align="center">A passionate developer from Germany</h3>
-
-- 👨🏻‍💻 I’m currently working on **a simple API written with Golang**
-
-
-
+![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/schempil/me-api?style=for-the-badge)
