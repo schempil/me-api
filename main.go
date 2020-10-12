@@ -37,7 +37,7 @@ func notFound(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(`{"message": "not found"}`))
 }
 
-func main() {
+func handleRequests() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", get).Methods(http.MethodGet)
 	r.HandleFunc("/", post).Methods(http.MethodPost)
@@ -45,4 +45,8 @@ func main() {
 	r.HandleFunc("/", delete).Methods(http.MethodDelete)
 	r.HandleFunc("/", notFound)
 	log.Fatal(http.ListenAndServe(":8080", r))
+}
+
+func main() {
+	handleRequests()
 }
