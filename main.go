@@ -2,10 +2,10 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
-	"github.com/gorilla/mux"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 type Person struct {
@@ -13,22 +13,31 @@ type Person struct {
 	Age  int
 }
 
-func get(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
+func toJson(structure interface{}) []byte {
 
-	person := Person{
+	bytes, err := json.Marshal(structure)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return bytes
+}
+
+func getPerson() Person {
+	return Person{
 		Name: "Philipp",
 		Age:  25,
 	}
+}
 
-	b, err := json.Marshal(person)
+func get(w http.ResponseWriter, r *http.Request) {
 
-	if err != nil {
-		fmt.Println("error:", err)
-	}
+	person := toJson(getPerson())
 
-	w.Write(b)
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	w.Write(person)
 }
 
 func post(w http.ResponseWriter, r *http.Request) {
@@ -62,6 +71,7 @@ func handleRequests() {
 	r.HandleFunc("/", put).Methods(http.MethodPut)
 	r.HandleFunc("/", delete).Methods(http.MethodDelete)
 	r.HandleFunc("/", notFound)
+
 	log.Fatal(http.ListenAndServe(":8080", r))
 }
 
