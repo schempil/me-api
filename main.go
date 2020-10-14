@@ -1,39 +1,16 @@
 package main
 
 import (
-	"encoding/json"
 	"log"
 	"net/http"
+	"person"
 
 	"github.com/gorilla/mux"
 )
 
-type Person struct {
-	Name string
-	Age  int
-}
-
-func toJson(structure interface{}) []byte {
-
-	bytes, err := json.Marshal(structure)
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return bytes
-}
-
-func getPerson() Person {
-	return Person{
-		Name: "Philipp",
-		Age:  25,
-	}
-}
-
 func get(w http.ResponseWriter, r *http.Request) {
 
-	person := toJson(getPerson())
+	person := person.ToJson(person.GetPerson())
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
