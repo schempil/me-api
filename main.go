@@ -7,6 +7,11 @@ import (
 	"github.com/gorilla/mux"
 )
 
+type Person struct {
+	name string
+	age  int
+}
+
 func get(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
