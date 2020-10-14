@@ -1,21 +1,34 @@
 package main
 
 import (
+	"encoding/json"
+	"fmt"
+	"github.com/gorilla/mux"
 	"log"
 	"net/http"
-
-	"github.com/gorilla/mux"
 )
 
 type Person struct {
-	name string
-	age  int
+	Name string
+	Age  int
 }
 
 func get(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"message": "get called"}`))
+
+	person := Person{
+		Name: "Philipp",
+		Age:  25,
+	}
+
+	b, err := json.Marshal(person)
+
+	if err != nil {
+		fmt.Println("error:", err)
+	}
+
+	w.Write(b)
 }
 
 func post(w http.ResponseWriter, r *http.Request) {
