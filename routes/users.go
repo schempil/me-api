@@ -13,4 +13,8 @@ func addUserRoutes(rg *gin.RouterGroup) {
 	users.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, person.GetPerson())
 	})
+
+	users.POST("/", func(c *gin.Context) {
+		c.JSON(http.StatusOK, "Posted /users")
+	})
 }
