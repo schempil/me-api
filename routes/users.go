@@ -15,6 +15,14 @@ func addUserRoutes(rg *gin.RouterGroup) {
 	})
 
 	users.POST("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "Posted /users")
+		c.JSON(http.StatusOK, "POST /users")
+	})
+
+	users.PUT("/", func(c *gin.Context) {
+		c.JSON(http.StatusOK, "PUT /users")
+	})
+
+	users.DELETE("/", func(c *gin.Context) {
+		c.JSON(http.StatusOK, "DELETE /users")
 	})
 }
