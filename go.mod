@@ -3,7 +3,6 @@ module main
 go 1.15
 
 replace routes => ./routes
-
 replace person => ./person
 
 require (
