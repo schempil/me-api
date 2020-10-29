@@ -4,6 +4,8 @@ go 1.15
 
 replace routes => ./routes
 
+replace person => ./person
+
 require (
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-playground/validator/v10 v10.4.1 // indirect
@@ -14,5 +16,6 @@ require (
 	golang.org/x/sys v0.0.0-20201029080932-201ba4db2418 // indirect
 	google.golang.org/protobuf v1.25.0 // indirect
 	gopkg.in/yaml.v2 v2.3.0 // indirect
+	person v0.0.0-00010101000000-000000000000 // indirect
 	routes v0.0.0-00010101000000-000000000000
 )
