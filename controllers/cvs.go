@@ -6,15 +6,19 @@ import (
 	"net/http"
 )
 
-func FindCVs(c *gin.Context) {
-	var cvs []models.CV
-	models.DB.Find(&cvs)
+var (
+	cvs []models.CV
+)
 
+func FindCVs(c *gin.Context) {
+	models.DB.Find(&cvs)
 	c.JSON(http.StatusOK, gin.H{"data": cvs})
 }
 
 func FindCV(c *gin.Context) {
-	c.String(http.StatusNotImplemented, "Sorry fo dat")
+	id := c.Param("id")
+	models.DB.First(&cvs, id)
+	c.JSON(http.StatusOK, gin.H{"data": cvs})
 }
 
 func CreateCV(c *gin.Context) {
