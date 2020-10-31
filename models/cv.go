@@ -8,7 +8,7 @@ type CV struct {
 }
 
 type CreateCV struct {
-	FirstName string `json:"firstName"`
-	LastName  string `json:"lastName"`
-	Title     string `json:"title"`
+	FirstName string `json:"firstName" binding:"required"`
+	LastName  string `json:"lastName" binding:"required"`
+	Title     string `json:"title" binding:"required"`
 }
