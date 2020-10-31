@@ -59,5 +59,16 @@ func UpdateCV(c *gin.Context) {
 }
 
 func DeleteCV(c *gin.Context) {
-	c.String(http.StatusNotImplemented, "Sorry fo dat")
+	var cv models.CV
+
+	id := c.Param("id")
+
+	if err := models.DB.Where("id = ?", id).First(&cv).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
+		return
+	}
+
+	models.DB.Delete(&cv)
+
+	c.JSON(http.StatusOK, gin.H{"data": true})
 }
