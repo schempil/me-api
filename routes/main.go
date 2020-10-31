@@ -2,6 +2,7 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
+	"models"
 )
 
 var (
@@ -10,6 +11,7 @@ var (
 
 func Run() {
 	getRoutes()
+	models.ConnectDataBase()
 	router.Run(":8080")
 }
 
