@@ -12,3 +12,9 @@ type CreateCV struct {
 	LastName  string `json:"lastName" binding:"required"`
 	Title     string `json:"title" binding:"required"`
 }
+
+type UpdateCV struct {
+	FirstName string `json:"firstName" binding:"required"`
+	LastName  string `json:"lastName" binding:"required"`
+	Title     string `json:"title" binding:"required"`
+}
