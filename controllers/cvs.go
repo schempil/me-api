@@ -22,7 +22,17 @@ func FindCV(c *gin.Context) {
 }
 
 func CreateCV(c *gin.Context) {
-	c.String(http.StatusNotImplemented, "Sorry fo dat")
+	var input models.CreateCV
+
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	cv := models.CV{FirstName: input.FirstName, LastName: input.LastName, Title: input.Title}
+	models.DB.Create(&cv)
+
+	c.JSON(http.StatusOK, gin.H{"data": cv})
 }
 
 func UpdateCV(c *gin.Context) {
