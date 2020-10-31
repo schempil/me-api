@@ -6,3 +6,9 @@ type CV struct {
 	LastName  string `json:"lastName"`
 	Title     string `json:"title"`
 }
+
+type CreateCV struct {
+	FirstName string `json:"firstName"`
+	LastName  string `json:"lastName"`
+	Title     string `json:"title"`
+}
