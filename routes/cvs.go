@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"controllers"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -8,9 +9,7 @@ import (
 func addCVRoutes(rg *gin.RouterGroup) {
 	cvs := rg.Group("/cvs")
 
-	cvs.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "GET /cvs")
-	})
+	cvs.GET("/", controllers.FindCVs)
 
 	cvs.POST("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, "POST /cvs")
