@@ -12,3 +12,19 @@ func FindCVs(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"data": cvs})
 }
+
+func FindCV(c *gin.Context) {
+	c.String(http.StatusNotImplemented, "Sorry fo dat")
+}
+
+func CreateCV(c *gin.Context) {
+	c.String(http.StatusNotImplemented, "Sorry fo dat")
+}
+
+func UpdateCV(c *gin.Context) {
+	c.String(http.StatusNotImplemented, "Sorry fo dat")
+}
+
+func DeleteCV(c *gin.Context) {
+	c.String(http.StatusNotImplemented, "Sorry fo dat")
+}

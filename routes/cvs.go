@@ -3,27 +3,14 @@ package routes
 import (
 	"controllers"
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 func addCVRoutes(rg *gin.RouterGroup) {
 	cvs := rg.Group("/cvs")
 
 	cvs.GET("/", controllers.FindCVs)
-
-	cvs.POST("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "POST /cvs")
-	})
-
-	cvs.GET("/:id", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "GET /cvs")
-	})
-
-	cvs.PUT("/:id", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "PUT /cvs")
-	})
-
-	cvs.DELETE("/:id", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "DELETE /cvs")
-	})
+	cvs.POST("/", controllers.CreateCV)
+	cvs.GET("/:id", controllers.FindCV)
+	cvs.PUT("/:id", controllers.UpdateCV)
+	cvs.DELETE("/:id", controllers.DeleteCV)
 }
