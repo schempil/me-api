@@ -8,7 +8,7 @@ import (
 
 var (
 	cvs []models.CV
-	cv models.CV
+	cv  models.CV
 )
 
 func FindCVs(c *gin.Context) {
@@ -43,15 +43,14 @@ func UpdateCV(c *gin.Context) {
 	}
 
 	var input models.UpdateCV
+
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	models.DB.Model(&cv).Updates(input)
-
 	c.JSON(http.StatusOK, gin.H{"data": cv})
-
 }
 
 func DeleteCV(c *gin.Context) {
