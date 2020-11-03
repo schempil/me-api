@@ -8,6 +8,7 @@ import (
 
 var (
 	cvs []models.CV
+	cv models.CV
 )
 
 func FindCVs(c *gin.Context) {
@@ -16,8 +17,7 @@ func FindCVs(c *gin.Context) {
 }
 
 func FindCV(c *gin.Context) {
-	id := c.Param("id")
-	models.DB.First(&cvs, id)
+	models.DB.First(&cvs, c.Param("id"))
 	c.JSON(http.StatusOK, gin.H{"data": cvs})
 }
 
@@ -37,11 +37,7 @@ func CreateCV(c *gin.Context) {
 
 func UpdateCV(c *gin.Context) {
 
-	var cv models.CV
-
-	id := c.Param("id")
-
-	if err := models.DB.Where("id = ?", id).First(&cv).Error; err != nil {
+	if err := models.DB.Where("id = ?", c.Param("id")).First(&cv).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
 		return
 	}
@@ -59,11 +55,8 @@ func UpdateCV(c *gin.Context) {
 }
 
 func DeleteCV(c *gin.Context) {
-	var cv models.CV
 
-	id := c.Param("id")
-
-	if err := models.DB.Where("id = ?", id).First(&cv).Error; err != nil {
+	if err := models.DB.Where("id = ?", c.Param("id")).First(&cv).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
 		return
 	}
