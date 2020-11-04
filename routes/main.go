@@ -18,4 +18,5 @@ func Run() {
 func getRoutes() {
 	v1 := router.Group("/v1")
 	addCVRoutes(v1)
+	addExperiencesRoutes(v1)
 }
